@@ -17,3 +17,5 @@ You need node.js and express
 
 # Roadmap 
 - [ ] Add angular specific integration
+- [ ] Add error handling
+- [ ] Debug functions for development

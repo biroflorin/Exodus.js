@@ -4,57 +4,101 @@ var _       = require('underscore');
 
 module.exports = function(_global) {
 
-	//try/catch function wrapper
-    var tcWrapper = function(theFunction, theName) {
-        return function() {
-            try {
-                theFunction.apply(this, arguments);
-            } catch(e) {
-                _global.errorHandler(e, theName).then(function(exitToClient) {
-                    exitToClient();
-                });
-            }
+	var handleError = function(err) {
+		console.log('ERROR ==', err)
+    };
+
+    var formatData = function(data) {
+    	var response = {};
+    	_.each(_global.functions, function(fn, id) {
+    		var key = fn.name || id;
+    		response[key] = data[id];
+    	});
+    	return response;
+    };
+
+    var clearFunctions = function(response) {
+    	delete _global.functions;
+    	return response;
+    };
+
+	var establishCallback = function(response){
+		console.log('RESPONSE ==', response);
+        if(_global.is_ws) {
+            // return runWS(data);
+        }
+        else if(_global.callback && typeof _global.callback === 'function') {
+            //if we have a custom response handler run that
+            _global.callback(response)
+        }
+        else {
+            //by default run the response header and send back the payload to client
+            defaultCallback(response);
         }
     };
 
-    //wrapp received functions
-    var wrappFunctions = function(functions) {
-        _.each(functions, function(i,n) {
-            var p = functions[n];
-            if( typeof p === 'function' ) {
-                functions[n] = tcWrapper(p, n);
-            }
+    var defaultCallback = function(data) {
+        if(_global._ws.length > 0) {
+            // do ws stuff here
+        }
+        else {
+            clientResponse(data);
+        }
+    };
+
+    var clientResponse = function(data) {
+        if(_global.dbTransaction) {
+            _global.dbTransaction.commit();
+        }
+        _global.res.send({
+            success: true,
+            data: data
         });
     };
 
+    //not in use ATM as this assumes all functions have a promised based content
+    var transformPromiseResponse = function(value, index, length) {
+		var name = value.name;
+		return value().then(function (data) {
+			return {key: name, value: data};
+		});
+	};
+
 	return function(functions, is_ws) {
 		_global._ws = [];
-        if(functions._ws) _global._ws = functions._ws;
-        functions = _.omit(functions, '_ws');
+		_global.is_ws = is_ws;
+		_global.functions = functions;
 
         return {
         	run: function(callback) {
-        		var func = tcWrapper(functions);
-        		//run promise series and callback
+        		_global.callback = callback;
+        		return Promise.map([_global.functions], function(value, index, length) {
+        			return value();
+        		})
+        		.catch(handleError)
+        		.then(formatData)
+        		.then(clearFunctions)
+        		.then(establishCallback);
         	},
         	sync: function(callback) {
-        		wrappFunctions(functions);
-        		//run promise sync and callback
+        		_global.callback = callback;
+        		return Promise.mapSeries(_global.functions, function(value, index, length) {
+        			return value();
+        		})
+        		.catch(handleError)
+        		.then(formatData)
+        		.then(clearFunctions)
+        		.then(establishCallback);
         	},
         	async: function(callback) {
-        		wrappFunctions(functions);
-        		//run promise async and callback
-        	},
-        	nested: function(callback) {
-        		wrappFunctions(functions);
-        		var arrayFunctions = [];
-                _.each(functions, function(i,n) {
-                    var p = functions[n];
-                    if( typeof p === 'function' ) {
-                        arrayFunctions.push(p);
-                    }
-                });
-                //run promise waterfall and callback
+        		_global.callback = callback;
+        		return Promise.map(_global.functions, function(value, index, length) {
+        			return value();
+        		})
+        		.catch(handleError)
+        		.then(formatData)
+        		.then(clearFunctions)
+        		.then(establishCallback);
         	}
         }
 	}

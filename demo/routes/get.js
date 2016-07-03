@@ -4,21 +4,30 @@ var Promise = require('bluebird');
 module.exports = function(req, res) {
     var Exod = Exodus.LOAD(req, res);
     var functions = [
-        function one() {
-            var data = 'first function';
-            return data;
-        },
-        function two() {
-            var data = 'second function';
-            return new Promise(function(resolve) {
-                setTimeout(function() {
-                    return resolve(data);
-                }, 3000);
-            })
-        },
-        function three() {
-            var data = 'third function';
-            return data;
+        function user() {
+            var users_db = {
+                2: {
+                    userID: 2,
+                    name: 'James Brown',
+                    email: 'james.brown@example.com'
+                },
+                3: {
+                    userID: 3,
+                    name: 'Alicie Blue',
+                    email: 'alicie.blue@example.com'
+                },
+                4: {
+                    userID: 4,
+                    name: 'Andrew White',
+                    email: 'andrew.white@example.com'
+                },
+                5: {
+                    userID: 5,
+                    name: 'Edward Black',
+                    email: 'edward.black@example.com'
+                }
+            };
+            return users_db;
         }
     ];
     var renderPayload = function(results) {

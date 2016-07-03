@@ -35,8 +35,22 @@ var setupExodusRoutes = {
     },
 
     loadMethodConfig: function(method_detail, method_name, api_path) {
+        var transformVariables = function(req, res, next) {
+            req.urlVars = req.params;
+            switch(method_name) {
+                case 'get':
+                case 'delete':
+                    req.vars = req.query;
+                    break;
+                case 'put':
+                case 'post':
+                    req.vars = req.body;
+                    break;
+            }
+            next();
+        };
         var callback = require(method_detail.file);
-        _global._exodus.app[method_name](api_path, callback);
+        _global._exodus.app[method_name](api_path, transformVariables, callback);
 
         console.log('created route', api_path, 'that calls file', method_detail.file)
     }

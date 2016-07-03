@@ -7,18 +7,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="mobile-web-app-capable" content="yes">
 
-    <!--DYNAMICALLY GENERATED EXODUS RESOURCES-->
-    <%- exodus_scripts %>
-
     <title>Exodus Demo</title>
-    
+    <script src="/socket.io/socket.io.js"></script>
+
 </head>
 
 <body id="sharktower-body">    
 
     <script type="text/javascript">
         window.data_storage = <%- JSON.stringify(data) %>;
-        window.api_config = <%- JSON.stringify(routes_config) %>;
+        window.routes_config = <%- JSON.stringify(routes_config) %>;
+        window.collection_config = <%- JSON.stringify(collection_config) %>;
+        var socket = io();
+        socket.on('client-data-push', function(data){
+            console.log('data: ', data);
+        });
     </script>
 </body>
 

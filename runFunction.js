@@ -1,11 +1,20 @@
 var moment  = require('moment');
 var Promise = require('bluebird');
 var _       = require('lodash');
+var runWebSocket = require('./runWebSocket');
 
 module.exports = function(_global) {
 
 	var executeFunctions = function(type, callback) {
-		_global.callback = callback;
+        if(callback && typeof callback == 'function') {
+            _global.customCallback = callback;
+        }
+		else if(callback && callback.constructor === Array) {
+            _global.callback_websockets = callback;
+        }
+        if(typeof _global.functions === 'function') {
+            _global.functions = [_global.functions];
+        }
 		return Promise[type](_global.functions, function(value, index, length) {
 			return value();
 		})
@@ -21,10 +30,7 @@ module.exports = function(_global) {
 
     var formatData = function(data) {
     	var response = {};
-    	console.log('_global.functions', _global.functions);
-    	console.log('data', data);
     	_.each(_global.functions, function(fn, id) {
-    		console.log()
     		var key = fn.name || id;
     		response[key] = data[id];
     	});
@@ -37,12 +43,15 @@ module.exports = function(_global) {
     };
 
 	var establishCallback = function(response){
-        if(_global.is_ws) {
-            // return runWS(data);
+        if(_global.callback_websockets && _global.callback_websockets.length) {
+            // run the websocketed controllers before responding to the client
+            runWebSocket.executeControllers(_global);
+            //Not sure if we should wait for websocketed controllers to finish before ending this user request?
+            defaultCallback(response);
         }
-        else if(_global.callback && typeof _global.callback === 'function') {
+        else if(_global.customCallback && typeof _global.customCallback === 'function') {
             //if we have a custom response handler run that
-            _global.callback(response)
+            _global.customCallback(response)
         }
         else {
             //by default run the response header and send back the payload to client
@@ -51,8 +60,8 @@ module.exports = function(_global) {
     };
 
     var defaultCallback = function(data) {
-        if(_global._ws.length > 0) {
-            // do ws stuff here
+        if(_global.req.is_websocket) {
+            runWebSocket.emitCollectionUpdate(data, _global);
         }
         else {
             clientResponse(data);
@@ -68,14 +77,6 @@ module.exports = function(_global) {
             data: data
         });
     };
-
-    //not in use ATM as this assumes all functions have a promised based content
-    var transformPromiseResponse = function(value, index, length) {
-		var name = value.name;
-		return value().then(function (data) {
-			return {key: name, value: data};
-		});
-	};
 
 	return function(functions, is_ws) {
 		_global._ws = [];

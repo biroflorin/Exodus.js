@@ -6,15 +6,17 @@ var renderClient = require('./renderClient');
 var _exodus = {
     routes_config: {},
     collection_config: {},
-    registerExpressApp: function(app) {
+    registerExpressApp: function(app, io) {
         _exodus.app = app;
+        _exodus.io = io;
         return _exodus;
     },
     LOAD: function(req, res) {
         var _global = {
             commons: {
                 req: req,
-                res: res
+                res: res,
+                _exodus: _exodus
             }
         };
 
@@ -29,11 +31,6 @@ var _exodus = {
 //  ===============================
 var setupExodusRoutes = require('./setupExodusRoutes')(_exodus);
 var _ = require('lodash');
-
-
-
-console.log('exodus routes');
-console.log(setupExodusRoutes);
 
 module.exports = function() {
     return _exodus;

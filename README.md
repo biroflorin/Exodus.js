@@ -3,6 +3,8 @@
 
 # Exodus
 
+[View the website for details](http://biroflorin.github.io/Exodus.js/)
+
 # FAQ's 
 
 *What frameworks does it work with?*

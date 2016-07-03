@@ -1,0 +1,24 @@
+body {
+    color: $main-color-dark;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 200;
+    line-height: 2.3;
+    h1,
+    h2,
+    h3, h4 {
+        font-family: 'Titillium Web', sans-serif;
+    }
+    h1 {
+        color: $main-color-lightest;
+    }
+    h2, h3, h4 {
+        color: $main-color-darkest;
+    }
+    .sub-heading {
+        color: $main-color-dark;
+    }
+}
+
+.text-accent-medium {
+    color: $accent-color-medium;
+}

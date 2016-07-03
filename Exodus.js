@@ -19,7 +19,11 @@ module.exports = function() {
 		};
 
 		return {
-			runFunction: runFunction(_global.commons)
+			runFunction: runFunction(_global.commons),
+			renderClient: renderClient({
+				res: res,
+				scripts_html: _exodus.scripts_html
+			}),
 		}
 	};
 

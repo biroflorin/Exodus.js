@@ -1,3 +1,4 @@
+ejs = require('ejs');
 module.exports = function(_global) {
 	return function(template, ejs_vars) {
 		if(typeof ejs_vars == 'object') {

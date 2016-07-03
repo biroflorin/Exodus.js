@@ -22,6 +22,7 @@
   "homepage": "https://github.com/biroflorin/Exodus.js",
   "dependencies": {
     "bluebird": "^3.4.1",
+    "ejs": "^2.4.2",
     "moment": "^2.13.0",
     "underscore": "^1.8.3"
   }

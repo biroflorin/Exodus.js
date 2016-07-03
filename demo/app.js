@@ -23,7 +23,13 @@ app.get('/', function (req, res) {
 			return data;
 		}
 	];
-  	Exod.runFunction(functions).async();
+	var renderPayload = function(results) {
+    	var ejsVars = {
+    		data: results
+    	};
+    	Exod.renderClient(process.cwd() +'/views/app.ejs', ejsVars);
+    };
+  	Exod.runFunction(functions).async(renderPayload);
 });
 
 app.listen(3000, function () {

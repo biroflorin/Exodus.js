@@ -3,6 +3,7 @@
 var Promise 		= require('bluebird');
 var app_root 		= process.cwd();
 var runFunction		= require('./runFunction');
+var renderClient		= require('./renderClient');
 var _exodus = {};
 
 module.exports = function() {

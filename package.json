@@ -1,0 +1,28 @@
+{
+  "name": "Exodus",
+  "version": "0.0.1",
+  "description": "The Javascript Framework forged from the hardships of coding with Node & Angular",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/biroflorin/Exodus.js.git"
+  },
+  "keywords": [
+    "javascript",
+    "framework"
+  ],
+  "author": "Biro Florin & Lou Bichard",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/biroflorin/Exodus.js/issues"
+  },
+  "homepage": "https://github.com/biroflorin/Exodus.js",
+  "dependencies": {
+    "bluebird": "^3.4.1",
+    "moment": "^2.13.0",
+    "underscore": "^1.8.3"
+  }
+}

@@ -11,4 +11,9 @@
 
 Any
 
+**What are the prerequisites?**
+
+You need node.js and express
+
 # Roadmap 
+- [ ] Add angular specific integration

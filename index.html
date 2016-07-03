@@ -12,7 +12,7 @@
 <body>
     <div class="header">
         <div class="row">
-            <h1 class="text-center">Exodus.js</h1>
+            <h1 class="text-center">Exodus<span class="text-accent-medium">.js</span></h1>
         </div>
     </div>
     <br>
@@ -84,7 +84,30 @@
     <div class="section">
         <h3>How does it work?</h3>
         <br>
-        <p>[[ Insert Demo image ]]</p>
+        <div class="row">
+            <div class="col-md-3">
+                <ol>
+                    <li>Client initiates a change</li>
+                    <li>REST update is sent to the server</li>
+                    <li>Node handles the request with a reusable function</li>
+                    <li>Database stores values in any format you like</li>
+                    <li>Websocket event is emitted to all clients</li>
+                </ol>
+            </div>
+            <div class="col-md-6">
+                <img height="100%" width="100%" src="site/img/architecture_diagram.png"\>
+            </div>
+            <div class="col-md-3">
+                <ol start="5">
+                    <li>REST API is returned with a success</li>
+                    <li>Original recipient recieves websocket data</li>
+                    <li>Next client recieves data in the exact same way as previous step</li>
+                    <li>Client updates component however it needs</li>
+                    <li>Next client updates it's components</li>
+                </ol>
+            </div>
+        </div>
+        
         <br>
         <hr class="light">
         <br>
@@ -101,6 +124,9 @@
     <div class="section background-accent">
         <h3>Getting started</h3>
         <p>Head over to <a href="https://github.com/biroflorin/Exodus.js">Github</a> and X Y Z to get started</p>
+        <ol>
+            <li><p><strong>`npm install Exodus.js`</strong></p></li>        
+        </ol>
     </div>
     <div class="footer">
         <p class="text-center">

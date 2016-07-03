@@ -6,13 +6,21 @@ var runFunction		= require('./runFunction');
 var _exodus = {};
 
 module.exports = function() {
-	var START = function(app, io, routes) {
+	var START = function(app) {
 		
 	};
 
-	var LOAD = function(req, res, config) {
-		var _global = {};
-		
+	var LOAD = function(req, res) {
+		var _global = {
+			commons: {
+				req: req,
+				res: res
+			}
+		};
+
+		return {
+			runFunction: runFunction(_global.commons)
+		}
 	};
 
 	return {

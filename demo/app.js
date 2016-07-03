@@ -105,7 +105,6 @@ app.get('/', function(req, res) {
         Exod.renderClient(process.cwd() +'/views/app.ejs', ejsVars);
     };
     Exod.runFunction(functions).async(renderPayload);
-    Exod.runFunction(functions).async();
 });
 
 app.listen(3000, function() {

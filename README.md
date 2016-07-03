@@ -7,8 +7,15 @@
 
 # FAQ's 
 
-*What frameworks does it work with?*
+**What frameworks does it work with?**
 
 Any
 
+**What are the prerequisites?**
+
+You need node.js and express
+
 # Roadmap 
+- [ ] Add angular specific integration
+- [ ] Add error handling
+- [ ] Debug functions for development

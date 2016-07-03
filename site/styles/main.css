@@ -1,0 +1,64 @@
+/* 
+    To compile sass (from inside site repo): 
+
+    sass --watch styles/main.scss:styles/main.css
+
+*/
+.header {
+  background-color: #37474F;
+  box-shadow: 0px 8px 5px 0 rgba(0, 0, 0, 0.1); }
+
+.section {
+  position: relative;
+  padding-left: 20%;
+  padding-right: 20%;
+  padding-top: 50px;
+  padding-bottom: 50px; }
+  .section.background-main {
+    background-color: #ECEFF1; }
+  .section.background-accent {
+    background-color: #FBE9E7; }
+
+.leading_icons {
+  color: red;
+  padding-top: 50px;
+  padding-bottom: 50px;
+  font-size: 4em;
+  color: #78909C; }
+  .leading_icons i {
+    padding-left: 10%;
+    padding-right: 10%; }
+    .leading_icons i.fa-refresh {
+      color: #FFAB91; }
+
+hr.light {
+  border-top: 1px solid #B0BEC5; }
+
+body {
+  color: #546E7A;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 200;
+  line-height: 2.3; }
+  body h1,
+  body h2,
+  body h3, body h4 {
+    font-family: 'Titillium Web', sans-serif; }
+  body h1 {
+    color: #ECEFF1; }
+  body h2, body h3, body h4 {
+    color: #37474F; }
+  body .sub-heading {
+    color: #546E7A; }
+
+.text-accent-medium {
+  color: #FF7043; }
+
+.footer {
+  border-top: 1px solid #B0BEC5;
+  padding: 20px; }
+
+#editor {
+  width: 500px;
+  height: 400px; }
+
+/*# sourceMappingURL=main.css.map */

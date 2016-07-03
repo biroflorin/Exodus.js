@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" type="text/css" href="site/bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="site/styles/main.css">
+    <link rel="stylesheet" type="text/css" href="site/bower_components/font-awesome/css/font-awesome.min.css">
+    <link href='https://fonts.googleapis.com/css?family=Roboto:400,300|Titillium+Web:400,600' rel='stylesheet' type='text/css'>
+    <title>Exodus.js: Agile Seamless and Agnostic Client/Server Data Sync </title>
+</head>
+
+<body>
+    <div class="header">
+        <div class="row">
+            <h1 class="text-center">Exodus.js</h1>
+        </div>
+    </div>
+    <div class="section">
+        <h2 class="text-center text-accent-medium">Agile, Seamless and Agnostic Client/Server Data Sync</h2>
+        <p class="text-center leading_icons">
+            <i class="fa fa-6 fa-laptop" aria-hidden="true"></i>
+            <i class="fa fa-refresh" aria-hidden="true"></i>
+            <i class="fa fa-database" aria-hidden="true"></i>
+        </p>
+    </div>
+    <div class="section background-main">
+        <h3>What is Exodus.js?</h3>
+        <p> Exodus.js is a <strong>javascript</strong> lightweight framework for using <strong>REST</strong> and <strong>web socket technologies</strong> together to get the best power out of both worlds. </p>
+        <p> Define your REST functions in a way that Exodus understands and Exodus will make sure that all your client app’s are updated in real time. </p>
+    </div>
+    <div class="section">
+        <h3>Why we built Exodus.js?</h3>
+        <p>While working as on creating SPA application's that required a complicated inter-related server architecture (SQL) we struggled to keep our collection based front end's up to date. On the front end we wanted flat data structures that were easy to manipulate and present to our components local scope using libraries like <a href="lodash.com">Lodash</a>. We wanted our components to 'just refresh' when their relevant collections / data items changed on the DB, but we didn’t want to have to write lots of boilerplate. </p>
+    </div>
+    <div class="section background-main">
+        <h3>Principles</h3>
+        <br>
+        <br>
+        <div class="row">
+            <div class="col-md-offset-3 col-md-9">
+                <h4 class="text-accent-medium">An opinionated nudge towards agile-like reusability</h4>
+                <p>Agile principles sound great but software engineers often struggle to implement code that is truly agile and flexible. By using exodus (and it’s semi-opinionated structure) you’re going to get easy and flexible front end collections and reusable back end functions in your REST architecture.</p>
+            </div>
+        </div>
+        <br>
+        <hr class="light">
+        <br>
+        <div class="row">
+            <div class="col-md-9">
+                <h4 class="text-accent-medium">Utilise REST and web sockets for performance</h4>
+                <p>Use REST for updates to the server, and stick to original REST principles, but update your client data models with web sockets in the background.</p>
+            </div>
+        </div>
+        <br>
+        <hr class="light">
+        <br>
+        <div class="row">
+            <div class="col-md-9 col-md-offset-3">
+                <h4 class="text-accent-medium">One update to rule them all</h4>
+                <p>Rather than returning data in your REST API’s, push this data through web sockets, this means when you’re developing and your current screen refreshes, you know it will refresh for all other uses - magic!</p>
+            </div>
+        </div>
+        <br>
+        <hr class="light">
+        <br>
+        <div class="row">
+            <div class="col-md-9">
+                <h4 class="text-accent-medium">Make SQL manageable on the client</h4>
+                <p>Map difficult relational server technologies like SQL to simple flat JSON-like collections that are easy to use and manipulate on the front end</p>
+            </div>
+        </div>
+        <br>
+        <hr class="light">
+        <br>
+        <div class="row">
+            <div class="col-md-9 col-md-offset-3">
+                <h4 class="text-accent-medium">Synced &amp; updated clients</h4>
+                <p>Data updated on all clients all of the time</p>
+            </div>
+        </div>
+    </div>
+    <div class="section">
+        <h3>How does it work?</h3>
+        <br>
+        <p>[[ Insert Demo image ]]</p>
+        <br>
+        <hr class="light">
+        <br>
+        <h4> <strong class="text-accent-medium">Step 1: </strong> Creating your REST endpoints </h4>
+        <p>Create your REST endpoints like X, Y, Z </p>
+        <div id="editor">var test = function(){ alert('test'); };
+        </div>
+        <br>
+        <hr class="light">
+        <br>
+        <h4> <strong class="text-accent-medium">Step 2: </strong> Add your client code </h4>
+        <p>Create your REST endpoints like X, Y, Z </p>
+    </div>
+    <div class="section background-accent">
+        <h3>Getting started</h3>
+        <p>Head over to <a href="https://github.com/biroflorin/Exodus.js">Github</a> and X Y Z to get started</p>
+    </div>
+    <div class="footer">
+        <p class="text-center">
+            Code licensed under <a href="https://github.com/angular/angular.js/blob/master/LICENSE">MIT</a>
+        </p>
+    </div>
+    <script src="site/bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="site/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.3/ace.js" type="text/javascript" charset="utf-8"></script>
+    <script>
+    window.define = ace.define
+    var editor1 = ace.edit("editor");
+    var editor2 = ace.edit("editor");
+    </script>
+    <a href="https://github.com/biroflorin/Exodus.js"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/652c5b9acfaddf3a9c326fa6bde407b87f7be0f4/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6f72616e67655f6666373630302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png"></a>
+</body>
+
+</html>

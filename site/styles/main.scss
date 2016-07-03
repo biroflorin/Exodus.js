@@ -1,0 +1,27 @@
+/* 
+    To compile sass (from inside site repo): 
+
+    sass --watch styles/main.scss:styles/main.css
+
+*/
+
+$light-shadow: 0px 1px 2px 0 rgba(0, 0, 0, 0.1);
+$medium-shadow: 0px 8px 5px 0 rgba(0, 0, 0, 0.1);
+
+$accent-color-lightest: #FBE9E7;
+$accent-color-light: #FFAB91;
+$accent-color-medium: #FF7043;
+$accent-color-dark: #F4511E;
+$accent-color-darkest: #D84315;
+
+$main-color-lightest: #ECEFF1;
+$main-color-light: #B0BEC5;
+$main-color-medium: #78909C;
+$main-color-dark: #546E7A;
+$main-color-darkest: #37474F;
+
+@import 'header.scss';
+@import 'components.scss';
+@import 'typography.scss';
+@import 'footer.scss';
+@import 'text_editor.scss'

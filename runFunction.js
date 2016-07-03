@@ -1,6 +1,6 @@
 var moment  = require('moment');
 var Promise = require('bluebird');
-var _       = require('underscore');
+var _       = require('lodash');
 
 module.exports = function(_global) {
 

@@ -1,4 +1,4 @@
-var Exodus = require('../Exodus')();
+var Exodus = require('../../Exodus')();
 
 module.exports = function(req, res) {
 	var Exod = Exodus.LOAD(req, res);

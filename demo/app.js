@@ -6,11 +6,11 @@ var Promise = require('bluebird');
 app.get('/', function (req, res) {
 	var Exod = Exodus.LOAD(req, res);
 	var functions = [
-		function() {
+		function one() {
 			var data = 'first function';
 			return data;
 		},
-		function() {
+		function two() {
 			var data = 'second function';
 			return new Promise(function(resolve){
 				setTimeout(function() {
@@ -18,7 +18,7 @@ app.get('/', function (req, res) {
 				}, 3000);
 			})
 		},
-		function() {
+		function three() {
 			var data = 'third function';
 			return data;
 		}

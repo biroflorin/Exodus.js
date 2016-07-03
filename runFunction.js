@@ -4,13 +4,27 @@ var _       = require('underscore');
 
 module.exports = function(_global) {
 
+	var executeFunctions = function(type, callback) {
+		_global.callback = callback;
+		return Promise[type](_global.functions, function(value, index, length) {
+			return value();
+		})
+		.catch(handleError)
+		.then(formatData)
+		.then(clearFunctions)
+		.then(establishCallback);
+	};
+
 	var handleError = function(err) {
 		console.log('ERROR ==', err)
     };
 
     var formatData = function(data) {
     	var response = {};
+    	console.log('_global.functions', _global.functions);
+    	console.log('data', data);
     	_.each(_global.functions, function(fn, id) {
+    		console.log()
     		var key = fn.name || id;
     		response[key] = data[id];
     	});
@@ -23,7 +37,6 @@ module.exports = function(_global) {
     };
 
 	var establishCallback = function(response){
-		console.log('RESPONSE ==', response);
         if(_global.is_ws) {
             // return runWS(data);
         }
@@ -70,36 +83,9 @@ module.exports = function(_global) {
 		_global.functions = functions;
 
         return {
-        	run: function(callback) {
-        		_global.callback = callback;
-        		return Promise.map([_global.functions], function(value, index, length) {
-        			return value();
-        		})
-        		.catch(handleError)
-        		.then(formatData)
-        		.then(clearFunctions)
-        		.then(establishCallback);
-        	},
-        	sync: function(callback) {
-        		_global.callback = callback;
-        		return Promise.mapSeries(_global.functions, function(value, index, length) {
-        			return value();
-        		})
-        		.catch(handleError)
-        		.then(formatData)
-        		.then(clearFunctions)
-        		.then(establishCallback);
-        	},
-        	async: function(callback) {
-        		_global.callback = callback;
-        		return Promise.map(_global.functions, function(value, index, length) {
-        			return value();
-        		})
-        		.catch(handleError)
-        		.then(formatData)
-        		.then(clearFunctions)
-        		.then(establishCallback);
-        	}
+        	run: _.partial(executeFunctions, 'map'),
+        	sync: _.partial(executeFunctions, 'mapSeries'),
+        	async: _.partial(executeFunctions, 'map')
         }
 	}
 }

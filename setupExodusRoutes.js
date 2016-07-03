@@ -36,14 +36,15 @@ var setupExodusRoutes = {
 
     loadMethodConfig: function(method_detail, method_name, api_path) {
         var callback = require(method_detail.file);
-        _global.app[method_name](api_path, callback);
+        _global._exodus.app[method_name](api_path, callback);
 
         console.log('created route', api_path, 'that calls file', method_detail.file)
     }
 };
 
-module.exports = function(app, _exodus) {
-    _global.app = app;
+module.exports = function(_exodus) {
     _global._exodus = _exodus;
-    return setupExodusRoutes;
+    _exodus.registerNewCollection = setupExodusRoutes.registerNewCollection ;
+    _exodus.registerNewConfig = setupExodusRoutes.registerNewConfig;
+    return _exodus;
 }

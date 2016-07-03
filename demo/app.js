@@ -4,7 +4,10 @@ var Exodus = require('../Exodus')();
 var Promise = require('bluebird');
 var _ = require('lodash');
 
-Exodus.INIT(app)
+Exodus
+
+.registerExpressApp(app)
+
 // Setup a new config API
 .registerNewConfig({
     express_route: '/',

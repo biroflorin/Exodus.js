@@ -1,4 +1,5 @@
-var Exodus = require('../Exodus')();
+var Exodus = require('../../Exodus')();
+var Promise = require('bluebird');
 
 module.exports = function(req, res) {
     var Exod = Exodus.LOAD(req, res);
@@ -27,4 +28,7 @@ module.exports = function(req, res) {
         Exod.renderClient(process.cwd() +'/views/app.ejs', ejsVars);
     };
     Exod.runFunction(functions).async(renderPayload);
-}
+
+
+    console.log('loaded get.js');
+};

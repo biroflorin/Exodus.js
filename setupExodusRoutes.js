@@ -3,14 +3,10 @@ var _global = {};
 
 var setupExodusRoutes = {
     registerNewConfig: function(args) {
-        if (!args.express_route || !args.method || !args.file || !args.collectionName) {
-            console.warn('Incorrect register parameters passed, please pass express_route, method, file and collection');
-        } else if (!_global._exodus.collection_config[args.collectionName]) {
-            console.warn('No collection found!');
-        } else {
-            _global._exodus.routes_config[args.express_route] = {};
-            _global._exodus.routes_config[args.express_route][args.method] = _.pick(args, ['file', 'collection']);
-        }
+
+        _global._exodus.routes_config[args.express_route] = {};
+        _global._exodus.routes_config[args.express_route][args.method] = _.pick(args, ['file', 'collection']);
+
         return setupExodusRoutes;
     },
 
@@ -47,7 +43,7 @@ var setupExodusRoutes = {
 };
 
 module.exports = function(app, _exodus) {
-	_global.app = app;
-	_global._exodus = _exodus;
-	return setupExodusRoutes;
+    _global.app = app;
+    _global._exodus = _exodus;
+    return setupExodusRoutes;
 }

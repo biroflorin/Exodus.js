@@ -4,11 +4,15 @@ var Promise 		= require('bluebird');
 var app_root 		= process.cwd();
 var runFunction		= require('./runFunction');
 var renderClient		= require('./renderClient');
-var _exodus = {};
+var setupExodusRoutes = require('./setupExodusRoutes');
+var _exodus = {
+	routes_config: {},
+	collection_config: {}
+};
 
 module.exports = function() {
-	var START = function(app) {
-		
+	var INIT = function(app) {
+		return setupExodusRoutes(app, _exodus);
 	};
 
 	var LOAD = function(req, res) {
@@ -29,7 +33,7 @@ module.exports = function() {
 	};
 
 	return {
-		START: START,
+		INIT: INIT,
 		LOAD: LOAD,
 	}
 }

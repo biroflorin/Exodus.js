@@ -32,12 +32,18 @@ Exodus
     file: process.cwd() +'/routes/user/get.js',
     collectionName: 'user'
 })
+.registerNewConfig({
+    express_route: '/user/:userID',
+    method: 'put',
+    file: process.cwd() +'/routes/user/put.js',
+    collectionName: 'user'
+})
 // Setup a POST config API for USERS
 .registerNewConfig({
     express_route: '/user',
     method: 'post',
     file: process.cwd() +'/routes/user/post.js',
-    collectionName: 'task'
+    collectionName: 'task' //this seems to not be defined/used anywhere
 })
 
 // Compile the endpoints

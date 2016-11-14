@@ -4,7 +4,7 @@ var _global = {};
 var setupExodusRoutes = {
     registerNewConfig: function(args) {
 
-        _global._exodus.routes_config[args.express_route] = {};
+        _global._exodus.routes_config[args.express_route] = _global._exodus.routes_config[args.express_route] || {}; 
         _global._exodus.routes_config[args.express_route][args.method] = _.pick(args, ['file', 'collection']);
 
         return setupExodusRoutes;
@@ -40,11 +40,11 @@ var setupExodusRoutes = {
             switch(method_name) {
                 case 'get':
                 case 'delete':
-                    req.vars = req.query;
+                    req.vars = req.query; //T: should be urlVars?
                     break;
                 case 'put':
                 case 'post':
-                    req.vars = req.body;
+                    req.vars = req.body; //T: same as above
                     break;
             }
             next();

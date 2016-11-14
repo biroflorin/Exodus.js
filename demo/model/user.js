@@ -55,6 +55,9 @@ User.prototype.toString = function() {
 // ---
 
 module.exports = {
+    getAll: function() {
+        return data;
+    },
     getById: function(id) {
         var res = data.filter(function(v){ return v[id_key] == id; });
         return res.length ? new User(res[0]) : null;

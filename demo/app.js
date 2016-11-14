@@ -14,7 +14,7 @@ Exodus
 .registerExpressApp(app, io)
 
 // Setup a new config API
-.registerNewConfig({
+.registerNewRoute({
     express_route: '/',
     method: 'get',
     file: process.cwd() +'/routes/get.js'
@@ -26,28 +26,25 @@ Exodus
     propertyID: 'userID'
 })
 // Setup a GET config API for USERS
-.registerNewConfig({
+.registerNewRoute({
     express_route: '/user/:userID',
     method: 'get',
     file: process.cwd() +'/routes/user/get.js',
     collectionName: 'user'
 })
-.registerNewConfig({
+.registerNewRoute({
     express_route: '/user/:userID',
     method: 'put',
     file: process.cwd() +'/routes/user/put.js',
     collectionName: 'user'
 })
 // Setup a POST config API for USERS
-.registerNewConfig({
+.registerNewRoute({
     express_route: '/user',
     method: 'post',
     file: process.cwd() +'/routes/user/post.js',
     collectionName: 'task' //this seems to not be defined/used anywhere
-})
-
-// Compile the endpoints
-.start();
+});
 
 http.listen(3000, function() {
     console.log('Example app listening on port 3000!');

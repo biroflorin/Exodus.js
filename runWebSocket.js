@@ -12,20 +12,20 @@ module.exports = {
 
 			//flag the request as a websocketed one and run the controller function. the flag is set as the collection id to be bassed when the websocket is emited
 			_global.req.is_websocket = collection;
-	        return controllerFunction(_global.req, _global.res);
+			return controllerFunction(_global.req, _global.res);
 		});
 	},
 	emitCollectionUpdate: function(data, _global) {
 		console.log('testing EMIT WS ===', {
-            collection: _global.req.is_websocket,
-            data: data
-        });
+		    collection: _global.req.is_websocket,
+		    data: data
+		});
 		return new Promise(function(resolve, reject) {
-            _global._exodus.io.sockets.emit('client-data-push', {
-                collection: _global.req.is_websocket,
-                data: data
-            });
-            return resolve();
-        });
+		    _global._exodus.io.sockets.emit('client-data-push', {
+			collection: _global.req.is_websocket,
+			data: data
+		    });
+		    return resolve();
+		});
 	}
 }

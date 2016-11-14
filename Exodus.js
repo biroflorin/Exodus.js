@@ -29,7 +29,7 @@ var _exodus = {
 
 //  Exodus.js 0.1 (alpha)
 //  ===============================
-var setupExodusRoutes = require('./setupExodusRoutes')(_exodus);
+var setupExodusRoutes = require('./setupExodusRoutes')(_exodus); //why is this in separate file? 
 var _ = require('lodash');
 
 module.exports = function() {

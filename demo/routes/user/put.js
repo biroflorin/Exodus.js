@@ -1,35 +1,24 @@
-var Exodus = require('../../../Exodus')();
+var Exodus = require('../../../Exodus')(),
+    _ = require('lodash'),
+    UserModel = require('../../model/user.js');
 
 module.exports = function(req, res) {
 	var Exod = Exodus.LOAD(req, res);
 
-	//users db
-	var users_db = {
-		2: {
-			userID: 2,
-			name: 'James Brown',
-			email: 'james.brown@example.com'
-		},
-		3: {
-			userID: 3,
-			name: 'Alicie Blue',
-			email: 'alicie.blue@example.com'
-		},
-		4: {
-			userID: 4,
-			name: 'Andrew White',
-			email: 'andrew.white@example.com'
-		},
-		5: {
-			userID: 5,
-			name: 'Edward Black UPDATED',
-			email: 'edward.black@example.com'
-		}
-	};
+    var changeUser = function() {
+        var user = UserModel.getById(req.urlVars.userID);
+        if (!user){
+            res.status = 404;
+            return "Not Found";
+        }
+        _.each(req.vars, function(v, k){
+                if (k===UserModel.id_key)
+                    return;
+                user[k] = v;
+            });
+        debugger;
+        return user.save();
+    };
 
-    var getUser = function() {
-        return users_db[req.urlVars.userID];
-    }
-
-    Exod.runFunction(getUser).run();
+    Exod.runFunction(changeUser).run(['user']); //declaring the 'user' string in an array as parameter in the run/sync/async function will trigger the websocketed user GET controller
 }
